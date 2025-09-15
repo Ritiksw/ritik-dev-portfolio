@@ -1,23 +1,30 @@
-# Portfolio Website
+# Ritik Wandale - Professional Portfolio Website
 
-A modern, responsive portfolio website built with HTML, Tailwind CSS, and JavaScript.
+A sophisticated, responsive portfolio website built with HTML, Tailwind CSS, and JavaScript featuring dark mode, interactive animations, and premium design.
 
 ## Features
 
-- **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
-- **Modern UI**: Clean, professional design with smooth animations
-- **Tailwind CSS**: Utility-first CSS framework for rapid styling
-- **Interactive Elements**: Smooth scrolling navigation and hover effects
-- **Contact Form**: Ready-to-use contact form (needs backend integration)
-- **Font Awesome Icons**: Professional icons throughout the site
+- **🌓 Dark Mode**: Toggle between light and dark themes with persistent storage
+- **📱 Responsive Design**: Works perfectly on desktop, tablet, and mobile devices  
+- **🎨 Premium UI**: Million-dollar designer aesthetic with sophisticated typography
+- **✨ Interactive Animations**: Floating icons with mouse-fleeing effects (home page)
+- **🚀 Multi-Page Structure**: Separate pages for About, Projects, Skills, and Contact
+- **💼 Professional Layout**: Clean, modern design with Tailwind CSS
+- **🎯 Smooth Animations**: Scroll-triggered animations and hover effects
+- **📧 Contact Form**: Fully functional form with validation
+- **🔗 Social Integration**: Connected LinkedIn, GitHub, and Twitter profiles
 
-## Sections
+## Pages
 
-1. **Hero Section**: Eye-catching introduction with call-to-action buttons
-2. **About Me**: Personal story and professional highlights
-3. **Skills & Technologies**: Visual skill bars and technology categories
-4. **Featured Projects**: Showcase of your best work with project cards
-5. **Contact**: Contact information and working contact form
+1. **🏠 Home (index.html)**: Hero section with interactive floating icons and quick stats
+2. **👨‍💻 About (about.html)**: Personal journey, education, experience, and achievements  
+3. **💼 Work (projects.html)**: Featured projects with GitHub links and technology stacks
+4. **🛠️ Skills (skills.html)**: Technical proficiency with animated skill bars
+5. **📞 Contact (contact.html)**: Contact form, information, and social media links
+
+## Live Demo
+
+🌐 **Visit the live website**: [https://ritiksw.github.io/ritik-dev-portfolio](https://ritiksw.github.io/ritik-dev-portfolio)
 
 ## Customization
 
