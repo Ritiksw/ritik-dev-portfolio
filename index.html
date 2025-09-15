@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritik Wandale - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        secondary: "#1E40AF",
+                        accent: "#F59E0B",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        serif: ["Playfair Display", "serif"],
+                    },
+                    animation: {
+                        "fade-in": "fadeIn 0.6s ease-in-out",
+                        "slide-up": "slideUp 0.8s ease-out",
+                        "slide-in-left": "slideInLeft 0.8s ease-out",
+                        "slide-in-right": "slideInRight 0.8s ease-out",
+                        "bounce-in": "bounceIn 1s ease-out",
+                        "pulse-slow": "pulse 3s infinite",
+                        "float": "float 3s ease-in-out infinite",
+                        "float-slow": "float 4s ease-in-out infinite",
+                        "float-fast": "float 2s ease-in-out infinite",
+                        "drift": "drift 6s ease-in-out infinite",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-50px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0); 
+            }
+        }
+        @keyframes slideInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(50px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0); 
+            }
+        }
+        @keyframes bounceIn {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.3); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.05); 
+            }
+            70% { 
+                transform: scale(0.9); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(1deg); }
+            50% { transform: translateY(-15px) rotate(0deg); }
+            75% { transform: translateY(-8px) rotate(-1deg); }
+        }
+        @keyframes drift {
+            0%, 100% { transform: translateX(0px) translateY(0px) rotate(0deg); }
+            25% { transform: translateX(10px) translateY(-10px) rotate(2deg); }
+            50% { transform: translateX(-5px) translateY(-20px) rotate(0deg); }
+            75% { transform: translateX(-10px) translateY(-10px) rotate(-2deg); }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .floating-element {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .floating-element:hover {
+            transform: scale(1.2) !important;
+            filter: brightness(1.3) saturate(1.5);
+            z-index: 10;
+        }
+        .floating-element.mouse-nearby {
+            transform: scale(0.9);
+            filter: brightness(0.8) saturate(0.8);
+            transition: all 0.5s ease-out;
+        }
+        .floating-element.mouse-close {
+            animation-play-state: paused;
+            transform: scale(0.7);
+            filter: brightness(0.6) saturate(0.6);
+            transition: all 0.3s ease-out;
+        }
+        .floating-element.fleeing {
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
+    <!-- Premium Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="text-2xl font-serif font-bold text-gray-900 dark:text-white animate-slide-in-left">
+                    <span class="text-gray-400 dark:text-gray-500">R</span>itik <span class="text-gray-400 dark:text-gray-500">W</span>andale
+                </div>
+                <div class="hidden md:flex items-center space-x-12">
+                    <a href="index.html" class="text-gray-900 dark:text-white hover:text-primary transition-all duration-300 font-medium tracking-wide text-sm uppercase border-b-2 border-primary">Home</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 font-medium tracking-wide text-sm uppercase">About</a>
+                    <a href="projects.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 font-medium tracking-wide text-sm uppercase">Work</a>
+                    <a href="skills.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 font-medium tracking-wide text-sm uppercase">Skills</a>
+                    <a href="contact.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 font-medium tracking-wide text-sm uppercase">Contact</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="darkModeToggle" class="ml-6 p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
+                        <i class="fas fa-moon dark:hidden text-lg"></i>
+                        <i class="fas fa-sun hidden dark:block text-lg"></i>
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4 md:hidden">
+                    <!-- Mobile Dark Mode Toggle -->
+                    <button id="darkModeToggleMobile" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    <button class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full animate-pulse-slow"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full animate-pulse-slow"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full animate-pulse-slow"></div>
+        </div>
+        
+        <!-- Essential Floating Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <!-- Code Brackets - Essential coding symbol -->
+            <div class="floating-element absolute top-32 left-16 text-gray-400/40 animate-float" style="animation-delay: 0s;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.5,18.31L5.69,15.5L8.5,12.69L7.81,12L4.81,15L7.81,18L8.5,18.31M15.5,12.69L18.31,15.5L15.5,18.31L16.19,19L19.19,16L16.19,13L15.5,12.69Z"/>
+                </svg>
+            </div>
+            
+            <!-- React Symbol - Your main technology -->
+            <div class="floating-element absolute top-40 right-24 text-cyan-500/35 animate-drift" style="animation-delay: 2s;">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,10.11C13.03,10.11 13.87,10.95 13.87,12C13.87,13 13.03,13.85 12,13.85C10.97,13.85 10.13,13 10.13,12C10.13,10.95 10.97,10.11 12,10.11M7.37,20C8,20.38 9.38,19.8 10.97,18.30C10.45,17.71 9.94,17.07 9.46,16.4C8.64,16.32 7.83,16.2 7.06,16.04C6.55,18.18 6.74,19.65 7.37,20M8.08,14.26L7.79,13.75C7.68,14.04 7.57,14.33 7.5,14.61C7.77,14.67 8.07,14.72 8.38,14.77C8.28,14.6 8.18,14.43 8.08,14.26M14.62,13.5L15.43,12L14.62,10.5C14.32,9.97 14,9.5 13.71,9.03C13.17,9 12.6,9 12,9C11.4,9 10.83,9 10.29,9.03C10,9.5 9.68,9.97 9.38,10.5L8.57,12L9.38,13.5C9.68,14.03 10,14.5 10.29,14.97C10.83,15 11.4,15 12,15C12.6,15 13.17,15 13.71,14.97C14,14.5 14.32,14.03 14.62,13.5M12,6.78C11.81,7 11.61,7.23 11.41,7.5C11.61,7.5 11.8,7.5 12,7.5C12.2,7.5 12.39,7.5 12.59,7.5C12.39,7.23 12.19,7 12,6.78M12,17.22C12.19,17 12.39,16.77 12.59,16.5C12.39,16.5 12.2,16.5 12,16.5C11.8,16.5 11.61,16.5 11.41,16.5C11.61,16.77 11.81,17 12,17.22M16.62,4C16,3.62 14.62,4.2 13.03,5.7C13.55,6.29 14.06,6.93 14.54,7.6C15.36,7.68 16.17,7.8 16.94,7.96C17.45,5.82 17.26,4.35 16.62,4M15.92,9.74L16.21,10.25C16.32,9.96 16.43,9.67 16.5,9.39C16.23,9.33 15.93,9.28 15.62,9.23C15.72,9.4 15.82,9.57 15.92,9.74M17.37,2.69C18.84,3.53 19,5.74 18.38,8.32C20.92,9.07 22.75,10.31 22.75,12C22.75,13.69 20.92,14.93 18.38,15.68C19,18.26 18.84,20.47 17.37,21.31C15.91,22.15 13.92,21.19 12,19.36C10.08,21.19 8.09,22.15 6.62,21.31C5.16,20.47 5,18.26 5.62,15.68C3.08,14.93 1.25,13.69 1.25,12C1.25,10.31 3.08,9.07 5.62,8.32C5,5.74 5.16,3.53 6.62,2.69C8.09,1.85 10.08,2.81 12,4.64C13.92,2.81 15.91,1.85 17.37,2.69M17.08,12C17.42,12.75 17.72,13.5 17.97,14.26C20.07,13.63 21.25,12.73 21.25,12C21.25,11.27 20.07,10.37 17.97,9.74C17.72,10.5 17.42,11.25 17.08,12M6.92,12C6.58,11.25 6.28,10.5 6.03,9.74C3.93,10.37 2.75,11.27 2.75,12C2.75,12.73 3.93,13.63 6.03,14.26C6.28,13.5 6.58,12.75 6.92,12M15.92,14.26C15.82,14.43 15.72,14.6 15.62,14.77C15.93,14.72 16.23,14.67 16.5,14.61C16.43,14.33 16.32,14.04 16.21,13.75L15.92,14.26M8.08,9.74C8.18,9.57 8.28,9.4 8.38,9.23C8.07,9.28 7.77,9.33 7.5,9.39C7.57,9.67 7.68,9.96 7.79,10.25L8.08,9.74Z"/>
+                </svg>
+            </div>
+            
+            <!-- Laptop with Code -->
+            <div class="floating-element absolute top-64 right-96 text-gray-600/30 animate-drift" style="animation-delay: 4s;">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z"/>
+                    <!-- Code lines on screen -->
+                    <path d="M6,8H10V9H6V8M6,10H14V11H6V10M6,12H12V13H6V12M6,14H16V15H6V14" fill="currentColor" opacity="0.6"/>
+                </svg>
+            </div>
+            
+            <!-- Developer Figure -->
+            <div class="floating-element absolute top-88 left-48 text-blue-500/70 animate-float-slow" style="animation-delay: 3.2s; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                    <!-- Person head -->
+                    <circle cx="12" cy="6" r="2" fill="currentColor"/>
+                    <!-- Person body -->
+                    <path d="M12,9C10,9 8,10 8,12V22H10V16H14V22H16V12C16,10 14,9 12,9Z"/>
+                    <!-- Computer/desk -->
+                    <path d="M6,14H18V16H6V14M7,17H17V18H7V17" opacity="0.7"/>
+                    <!-- Coding gesture -->
+                    <path d="M9,11L11,13M15,11L13,13" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.8"/>
+                </svg>
+            </div>
+            
+            <!-- Code Editor Window -->
+            <div class="floating-element absolute bottom-72 right-48 text-emerald-500/70 animate-drift" style="animation-delay: 2.1s; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
+                    <!-- Window frame -->
+                    <path d="M3,3V21H21V3H3M5,5H19V7H5V5M5,9H19V19H5V9Z"/>
+                    <!-- Window controls -->
+                    <circle cx="6" cy="6" r="0.5" fill="currentColor" opacity="0.8"/>
+                    <circle cx="7.5" cy="6" r="0.5" fill="currentColor" opacity="0.8"/>
+                    <circle cx="9" cy="6" r="0.5" fill="currentColor" opacity="0.8"/>
+                    <!-- Code lines -->
+                    <path d="M7,11H17M7,12.5H15M7,14H13M7,15.5H16" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="mb-16">
+                <div class="inline-block mb-8">
+                    <span class="bg-white/80 backdrop-blur-sm text-gray-700 px-6 py-3 rounded-full text-sm font-medium uppercase tracking-widest shadow-lg">Software Engineer</span>
+                </div>
+                <h1 class="text-7xl md:text-8xl font-serif font-light text-gray-900 dark:text-white mb-6 animate-slide-up tracking-tight">
+                    Ritik <span class="font-bold gradient-text italic">Wandale</span>
+                </h1>
+                <p class="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-8 animate-slide-up font-light tracking-wide" style="animation-delay: 0.2s;">
+                    Crafting Digital Excellence
+                </p>
+                <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12 animate-slide-up leading-relaxed" style="animation-delay: 0.4s;">
+                    Passionate about creating innovative solutions through clean code and thoughtful design. Currently shaping the future of software at Yardi Software.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up" style="animation-delay: 0.6s;">
+                    <a href="projects.html" class="group bg-gray-900 text-white px-12 py-4 rounded-none hover:bg-gray-800 transition-all duration-500 font-medium tracking-wide uppercase text-sm relative overflow-hidden">
+                        <span class="relative z-10">Explore Work</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </a>
+                    <a href="contact.html" class="group border-2 border-gray-900 text-gray-900 px-12 py-4 rounded-none hover:bg-gray-900 hover:text-white transition-all duration-500 font-medium tracking-wide uppercase text-sm">
+                        Let's Connect
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-primary text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Premium Stats Section -->
+    <section class="py-32 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="text-center group animate-on-scroll">
+                    <div class="w-1 h-16 bg-gradient-to-b from-primary to-secondary mx-auto mb-6"></div>
+                    <div class="text-5xl font-serif font-bold text-gray-900 dark:text-white mb-2">7.7</div>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1 uppercase tracking-wide">CGPA</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Computer Engineering</p>
+            </div>
+                <div class="text-center group animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="w-1 h-16 bg-gradient-to-b from-green-500 to-emerald-600 mx-auto mb-6"></div>
+                    <div class="text-5xl font-serif font-bold text-gray-900 dark:text-white mb-2">5+</div>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1 uppercase tracking-wide">Projects</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Full-Stack Applications</p>
+                </div>
+                <div class="text-center group animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="w-1 h-16 bg-gradient-to-b from-purple-500 to-pink-600 mx-auto mb-6"></div>
+                    <div class="text-5xl font-serif font-bold text-gray-900 dark:text-white mb-2">2+</div>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1 uppercase tracking-wide">Years</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Professional Experience</p>
+                </div>
+                <div class="text-center group animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="w-1 h-16 bg-gradient-to-b from-yellow-500 to-orange-600 mx-auto mb-6"></div>
+                    <div class="text-5xl font-serif font-bold text-gray-900 dark:text-white mb-2">5★</div>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1 uppercase tracking-wide">Rating</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">HackerRank C++</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium CTA Section -->
+    <section class="py-32 bg-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="mb-8">
+                <span class="text-gray-400 uppercase tracking-widest text-sm font-medium">Available for opportunities</span>
+            </div>
+            <h2 class="text-5xl md:text-6xl font-serif font-light text-white mb-8 animate-on-scroll leading-tight">
+                Let's Create Something <br><span class="font-bold gradient-text italic">Extraordinary</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 animate-on-scroll max-w-2xl mx-auto leading-relaxed">
+                Ready to transform your vision into reality? Let's discuss how we can build exceptional digital experiences together.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center animate-on-scroll">
+                <a href="projects.html" class="group bg-white text-gray-900 px-12 py-4 rounded-none hover:bg-gray-100 transition-all duration-500 font-medium tracking-wide uppercase text-sm">
+                    View Portfolio
+                </a>
+                <a href="contact.html" class="group border-2 border-white text-white px-12 py-4 rounded-none hover:bg-white hover:text-gray-900 transition-all duration-500 font-medium tracking-wide uppercase text-sm">
+                    Start Conversation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">Ritik Wandale</h3>
+                    <p class="text-gray-400">Software Engineer Trainee passionate about creating innovative solutions.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="about.html" class="block text-gray-400 hover:text-white transition-colors">About</a>
+                        <a href="projects.html" class="block text-gray-400 hover:text-white transition-colors">Projects</a>
+                        <a href="skills.html" class="block text-gray-400 hover:text-white transition-colors">Skills</a>
+                        <a href="contact.html" class="block text-gray-400 hover:text-white transition-colors">Contact</a>
+                </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Connect</h4>
+                        <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/in/ritik-wandale-a1aa6a203/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-linkedin text-2xl"></i>
+                            </a>
+                        <a href="https://github.com/Ritiksw" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-github text-2xl"></i>
+                            </a>
+                        <a href="https://twitter.com/RitikWandale" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                    </div>
+                </div>
+                        </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p>&copy; 2024 Ritik Wandale. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".animate-on-scroll").forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll("a[href^=\"#\"]").forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle (hamburger button only)
+        const hamburgerButton = document.querySelector("button:not([id])"); // Button without ID
+        
+        if (hamburgerButton) {
+            hamburgerButton.addEventListener("click", () => {
+            console.log("Mobile menu clicked");
+            });
+        }
+
+        // Mouse cursor interaction with floating elements
+        const floatingElements = document.querySelectorAll('.floating-element');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // Track mouse movement
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            floatingElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const elementCenterX = rect.left + rect.width / 2;
+                const elementCenterY = rect.top + rect.height / 2;
+                
+                const distance = Math.sqrt(
+                    Math.pow(mouseX - elementCenterX, 2) + 
+                    Math.pow(mouseY - elementCenterY, 2)
+                );
+                
+                // Remove previous classes
+                element.classList.remove('mouse-nearby', 'mouse-close', 'fleeing');
+                
+                // Calculate repelling force and direction
+                if (distance < 150) {
+                    const repelStrength = Math.max(0, (150 - distance) / 150);
+                    const angle = Math.atan2(elementCenterY - mouseY, elementCenterX - mouseX);
+                    
+                    // Calculate flee distance (stronger when cursor is closer)
+                    const fleeDistance = repelStrength * 80; // Max 80px flee distance
+                    const fleeX = Math.cos(angle) * fleeDistance;
+                    const fleeY = Math.sin(angle) * fleeDistance;
+                    
+                    // Apply fleeing transformation
+                    element.classList.add('fleeing');
+                    
+                    if (distance < 80) {
+                        // Very close - flee fast and shrink more
+                        element.classList.add('mouse-close');
+                        element.style.transform = `translate(${fleeX}px, ${fleeY}px) scale(0.6) rotate(${repelStrength * 20}deg)`;
+                    } else if (distance < 120) {
+                        // Close - moderate flee
+                        element.classList.add('mouse-nearby');
+                        element.style.transform = `translate(${fleeX * 0.7}px, ${fleeY * 0.7}px) scale(0.8) rotate(${repelStrength * 10}deg)`;
+                    } else {
+                        // Nearby - subtle flee
+                        element.style.transform = `translate(${fleeX * 0.4}px, ${fleeY * 0.4}px) scale(0.9) rotate(${repelStrength * 5}deg)`;
+                    }
+                } else {
+                    // Return to original position when mouse is far
+                    element.style.transform = '';
+                }
+            });
+        });
+
+        // Add click effects to floating elements
+        floatingElements.forEach(element => {
+            element.addEventListener('click', () => {
+                // Create ripple effect
+                element.style.transform = 'scale(1.3) rotate(15deg)';
+                element.style.filter = 'brightness(1.5) saturate(2) hue-rotate(30deg)';
+                
+                setTimeout(() => {
+                    element.style.transform = '';
+                    element.style.filter = '';
+                }, 300);
+            });
+
+            // Add double-click effect
+            element.addEventListener('dblclick', () => {
+                // Spin effect
+                element.style.animation = 'none';
+                element.style.transform = 'rotate(360deg) scale(1.4)';
+                element.style.filter = 'brightness(1.6) saturate(2) hue-rotate(60deg)';
+                
+                setTimeout(() => {
+                    element.style.animation = '';
+                    element.style.transform = '';
+                    element.style.filter = '';
+                }, 600);
+            });
+        });
+
+        // Add mouse leave effect to restore icons when cursor leaves the page
+        document.addEventListener('mouseleave', () => {
+            floatingElements.forEach(element => {
+                element.classList.remove('mouse-nearby', 'mouse-close', 'fleeing');
+                element.style.transform = '';
+            });
+        });
+
+        // Add smooth return animation when cursor stops moving
+        let mouseStopTimeout;
+        document.addEventListener('mousemove', () => {
+            clearTimeout(mouseStopTimeout);
+            mouseStopTimeout = setTimeout(() => {
+                // Gradually return icons to normal state after cursor stops
+                floatingElements.forEach(element => {
+                    if (!element.matches(':hover')) {
+                        element.style.transition = 'all 2s ease-out';
+                        element.style.transform = '';
+                        setTimeout(() => {
+                            element.style.transition = '';
+                        }, 2000);
+                    }
+                });
+            }, 1000); // Wait 1 second after cursor stops moving
+        });
+
+        // Dark Mode Functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Add event listeners for both desktop and mobile toggles
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+        }
+        if (darkModeToggleMobile) {
+            darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+        }
+    </script>
+</body>
+</html>
