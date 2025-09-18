@@ -161,11 +161,11 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
     <!-- Premium Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
+    <nav class="fixed top-0 w-full bg-white dark:bg-gray-900 z-50 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-6">
-                <div class="text-2xl font-serif font-bold text-gray-900 dark:text-white animate-slide-in-left">
-                    <span class="text-gray-400 dark:text-gray-500">R</span>itik <span class="text-gray-400 dark:text-gray-500">W</span>andale
+                <div class="text-xl font-serif font-bold text-gray-900 dark:text-white animate-slide-in-left">
+                    <span class="text-gray-900 dark:text-white">R</span><span class="text-gray-400 dark:text-gray-500">itik </span><span class="text-gray-900 dark:text-white">W</span><span class="text-gray-400 dark:text-gray-500">andale</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-12">
                     <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 font-medium tracking-wide text-sm uppercase">Home</a>
@@ -175,56 +175,130 @@
                     <a href="contact.html" class="text-gray-900 dark:text-white hover:text-primary transition-all duration-300 font-medium tracking-wide text-sm uppercase border-b-2 border-primary">Contact</a>
                     
                     <!-- Dark Mode Toggle -->
-                    <button id="darkModeToggle" class="ml-6 p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
+                    <button id="darkModeToggle" class="ml-6 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
                         <i class="fas fa-moon dark:hidden text-lg"></i>
                         <i class="fas fa-sun hidden dark:block text-lg"></i>
                     </button>
                 </div>
                 <div class="flex items-center space-x-4 md:hidden">
                     <!-- Mobile Dark Mode Toggle -->
-                    <button id="darkModeToggleMobile" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
+                    <button id="darkModeToggleMobile" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:block"></i>
                     </button>
-                    <button class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">
-                        <i class="fas fa-bars text-xl"></i>
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobileMenuToggle" class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors p-2">
+                        <i id="hamburgerIcon" class="fas fa-bars text-xl transition-all duration-300"></i>
+                        <i id="closeIcon" class="fas fa-times text-xl transition-all duration-300 hidden"></i>
                     </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 z-40 md:hidden transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="absolute inset-0 bg-gray-900/50 dark:bg-black/60 backdrop-blur-md" id="mobileMenuBackdrop"></div>
+            <div class="absolute right-0 top-0 h-full w-80 max-w-sm bg-white dark:bg-gray-900 border-l-4 border-blue-500 dark:border-blue-400 shadow-2xl opacity-100 z-50">
+                <div class="flex flex-col h-full">
+                    <!-- Mobile Menu Header -->
+                    <div class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
+                        <div class="text-xl font-serif font-bold text-gray-900 dark:text-white">
+                            <span class="text-gray-900 dark:text-white">R</span><span class="text-gray-400 dark:text-gray-500">itik </span><span class="text-gray-900 dark:text-white">W</span><span class="text-gray-400 dark:text-gray-500">andale</span>
+                        </div>
+                        <button id="mobileMenuClose" class="p-2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Mobile Menu Navigation -->
+                    <nav class="flex-1 px-6 py-8">
+                        <div class="space-y-6">
+                            <a href="index.html" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:border-primary hover:pl-4 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-transparent pl-0">
+                                <i class="fas fa-home w-6 mr-4"></i>
+                                Home
+                            </a>
+                            <a href="about.html" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:border-primary hover:pl-4 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-transparent pl-0">
+                                <i class="fas fa-user w-6 mr-4"></i>
+                                About
+                            </a>
+                            <a href="projects.html" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:border-primary hover:pl-4 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-transparent pl-0">
+                                <i class="fas fa-briefcase w-6 mr-4"></i>
+                                Work
+                            </a>
+                            <a href="skills.html" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:border-primary hover:pl-4 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-transparent pl-0">
+                                <i class="fas fa-code w-6 mr-4"></i>
+                                Skills
+                            </a>
+                            <a href="contact.html" class="flex items-center text-gray-900 dark:text-white hover:text-primary transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-primary pl-4 bg-primary/5">
+                                <i class="fas fa-envelope w-6 mr-4"></i>
+                                Contact
+                            </a>
+                        </div>
+                    </nav>
+                    
+                    <!-- Mobile Menu Footer -->
+                    <div class="p-6 border-t border-gray-100 dark:border-gray-700">
+                        <div class="flex justify-center space-x-6">
+                            <a href="https://www.linkedin.com/in/ritik-wandale-a1aa6a203/" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-linkedin text-2xl"></i>
+                            </a>
+                            <a href="https://github.com/Ritiksw" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-github text-2xl"></i>
+                            </a>
+                            <a href="https://twitter.com/RitikWandale" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white relative">
+    <section class="pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
+        <!-- Dark mode vignette overlay (subtle, premium) -->
+        <div class="absolute inset-0 pointer-events-none hidden dark:block">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.05)_0,_transparent_60%)]"></div>
+            <div class="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(0,0,0,0.18),_transparent_30%,_transparent_70%,_rgba(0,0,0,0.18))]"></div>
+            <!-- Subtle animated circles to match Home (dark only) -->
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full animate-pulse-slow"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full animate-pulse-slow"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full animate-pulse-slow"></div>
+        </div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <div class="inline-block mb-6">
                     <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium uppercase tracking-wide">Contact</span>
                 </div>
-                <h1 class="text-6xl md:text-7xl font-light text-gray-900 mb-8 tracking-tight">
+                <h1 class="text-6xl md:text-7xl font-light text-gray-900 dark:text-white mb-8 tracking-tight">
                     Let's <span class="font-bold gradient-text">Connect</span>
                 </h1>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
                     Ready to discuss your next project? I'd love to hear from you
                 </p>
             </div>
         </div>
     </section>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <i class="fas fa-chevron-down text-primary text-2xl"></i>
+    </div>
 
     <!-- Contact Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16">
                 <!-- Contact Information -->
                 <div class="animate-on-scroll">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-8">Let's Connect</h2>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Let's Connect</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
                         I'm always excited to work on new projects and collaborate with amazing people. Whether you have a project in mind, want to discuss opportunities, or just want to say hello, I'd love to hear from you!
                     </p>
                     
                     <div class="space-y-6">
-                        <div class="contact-card flex items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl">
-                            <div class="social-icon bg-primary text-white p-4 rounded-full mr-6">
+                        <div class="contact-card flex items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 rounded-xl border border-gray-100 dark:border-gray-700">
+                            <div class="social-icon bg-primary text-white w-12 h-12 flex items-center justify-center rounded-full mr-6">
                                 <i class="fas fa-envelope text-xl"></i>
                             </div>
                             <div>
@@ -235,8 +309,8 @@
                             </div>
                         </div>
                                                 
-                        <div class="contact-card flex items-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
-                            <div class="social-icon bg-purple-500 text-white p-4 rounded-full mr-6">
+                        <div class="contact-card flex items-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-800 rounded-xl border border-gray-100 dark:border-gray-700">
+                            <div class="social-icon bg-purple-500 text-white w-12 h-12 flex items-center justify-center rounded-full mr-6">
                                 <i class="fas fa-map-marker-alt text-xl"></i>
                             </div>
                             <div>
@@ -250,13 +324,13 @@
                     <div class="mt-12">
                         <h3 class="text-xl font-semibold text-gray-900 mb-6">Follow Me</h3>
                         <div class="flex space-x-6">
-                            <a href="https://www.linkedin.com/in/ritik-wandale-a1aa6a203/" target="_blank" class="social-icon bg-blue-600 text-white p-4 rounded-full hover:bg-blue-700 transition-all duration-300">
+                            <a href="https://www.linkedin.com/in/ritik-wandale-a1aa6a203/" target="_blank" class="social-icon bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-blue-700 transition-all duration-300">
                                 <i class="fab fa-linkedin text-xl"></i>
                             </a>
-                            <a href="https://github.com/Ritiksw" target="_blank" class="social-icon bg-gray-800 text-white p-4 rounded-full hover:bg-gray-900 transition-all duration-300">
+                            <a href="https://github.com/Ritiksw" target="_blank" class="social-icon bg-gray-800 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-gray-900 transition-all duration-300">
                                 <i class="fab fa-github text-xl"></i>
                             </a>
-                            <a href="https://twitter.com/RitikWandale" target="_blank" class="social-icon bg-blue-400 text-white p-4 rounded-full hover:bg-blue-500 transition-all duration-300">
+                            <a href="https://twitter.com/RitikWandale" target="_blank" class="social-icon bg-blue-400 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-blue-500 transition-all duration-300">
                                 <i class="fab fa-twitter text-xl"></i>
                             </a>
                         </div>
@@ -266,8 +340,10 @@
                 <!-- Contact Form -->
                 <div class="animate-on-scroll" style="animation-delay: 0.2s;">
                     <div class="bg-white p-12 shadow-2xl border border-gray-200">
-                        <h2 class="text-4xl font-serif font-light text-gray-900 mb-12 text-center tracking-tight">Send a <span class="font-bold gradient-text">Message</span></h2>
+                        <h2 class="text-4xl font-serif font-light text-gray-900 dark:text-white mb-12 text-center tracking-tight">Send a <span class="font-bold gradient-text">Message</span></h2>
                         <form class="space-y-6" id="contactForm">
+                            <!-- Destination email for EmailJS (fallback if template not configured) -->
+                            <input type="hidden" name="to_email" value="wandaleritik101@gmail.com">
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label for="firstName" class="block text-sm font-semibold text-gray-700 mb-2">First Name *</label>
@@ -325,6 +401,8 @@
                                 </label>
                             </div>
                             
+                            <div id="contactStatus" class="hidden text-sm mt-2"></div>
+
                             <button type="submit" 
                                     class="w-full bg-gradient-to-r from-primary to-secondary text-white font-semibold py-4 px-6 rounded-lg hover:from-secondary hover:to-primary transition-all duration-300 hover:scale-105 transform">
                                 <i class="fas fa-paper-plane mr-2"></i>
@@ -337,11 +415,56 @@
         </div>
     </section>
 
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function(){
+            // Replace with your EmailJS public key
+            emailjs.init('YOUR_PUBLIC_KEY');
+        })();
+
+        const contactForm = document.getElementById('contactForm');
+        const contactStatus = document.getElementById('contactStatus');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(contactForm);
+                const payload = {
+                    to_email: formData.get('to_email') || 'wandaleritik101@gmail.com',
+                    first_name: formData.get('firstName') || '',
+                    last_name: formData.get('lastName') || '',
+                    email: formData.get('email') || '',
+                    phone: formData.get('phone') || '',
+                    subject: formData.get('subject') || '',
+                    message: formData.get('message') || ''
+                };
+
+                contactStatus.classList.remove('hidden');
+                contactStatus.className = 'text-sm mt-2 text-gray-600 dark:text-gray-300';
+                contactStatus.textContent = 'Sending...';
+
+                try {
+                    // Replace service_id and template_id with your EmailJS IDs
+                    const response = await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', payload);
+                    contactStatus.className = 'text-sm mt-2 text-green-600';
+                    contactStatus.textContent = 'Message sent successfully! I will get back to you soon.';
+                    contactForm.reset();
+                } catch (err) {
+                    contactStatus.className = 'text-sm mt-2 text-red-600';
+                    contactStatus.textContent = 'Failed to send. Please try again later or email me directly.';
+                    console.error('Email send error:', err);
+                }
+            });
+        }
+    </script>
+
     <!-- FAQ Section -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-20 bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 animate-on-scroll">Frequently Asked Questions</h2>
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 animate-on-scroll">Frequently Asked Questions</h2>
                 <div class="w-24 h-1 bg-primary mx-auto animate-on-scroll"></div>
             </div>
             
@@ -354,7 +477,7 @@
                         </div>
                     </div>
                     <div class="px-6 pb-6 hidden" id="answer-1">
-                        <p class="text-gray-600">I offer full-stack web development services including frontend development with React.js and AngularJS, backend development with .NET Framework and C#, database design with MS SQL Server, and API development and integration.</p>
+                        <p class="text-gray-600 dark:text-gray-300">I offer full-stack web development services including frontend development with React.js and AngularJS, backend development with .NET Framework and C#, database design with MS SQL Server, and API development and integration.</p>
                     </div>
                 </div>
                 
@@ -366,7 +489,7 @@
                         </div>
                     </div>
                     <div class="px-6 pb-6 hidden" id="answer-2">
-                        <p class="text-gray-600">Project timelines vary based on complexity and requirements. A simple website might take 1-2 weeks, while a full web application could take 4-8 weeks. I'll provide a detailed timeline after discussing your specific needs.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Project timelines vary based on complexity and requirements. A simple website might take 1-2 weeks, while a full web application could take 4-8 weeks. I'll provide a detailed timeline after discussing your specific needs.</p>
                     </div>
                 </div>
                 
@@ -378,7 +501,7 @@
                         </div>
                     </div>
                     <div class="px-6 pb-6 hidden" id="answer-3">
-                        <p class="text-gray-600">Yes, I work with clients globally. I'm comfortable with remote collaboration and can adjust my schedule to accommodate different time zones for meetings and communication.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Yes, I work with clients globally. I'm comfortable with remote collaboration and can adjust my schedule to accommodate different time zones for meetings and communication.</p>
                     </div>
                 </div>
                 
@@ -390,7 +513,7 @@
                         </div>
                     </div>
                     <div class="px-6 pb-6 hidden" id="answer-4">
-                        <p class="text-gray-600">I believe in transparent communication throughout the project. I provide regular updates, use project management tools, and am available for scheduled calls. You'll always know the current status of your project.</p>
+                        <p class="text-gray-600 dark:text-gray-300">I believe in transparent communication throughout the project. I provide regular updates, use project management tools, and am available for scheduled calls. You'll always know the current status of your project.</p>
                     </div>
                 </div>
             </div>
@@ -403,7 +526,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-2xl font-bold gradient-text mb-4">Ritik Wandale</h3>
-                    <p class="text-gray-400">Software Engineer Trainee passionate about creating innovative solutions.</p>
+                    <p class="text-gray-400">Software Engineer passionate about creating innovative solutions.</p>
                 </div>
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
@@ -501,14 +624,61 @@
             }, 2000);
         });
 
-        // Mobile menu toggle (hamburger button only)
-        const hamburgerButton = document.querySelector("button:not([id])"); // Button without ID
+        // Mobile Menu Functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
         
-        if (hamburgerButton) {
-            hamburgerButton.addEventListener("click", () => {
-                console.log("Mobile menu clicked");
+        function openMobileMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            hamburgerIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenu.classList.add('translate-x-full');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        
+        // Event listeners for mobile menu
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('translate-x-full')) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
             });
         }
+        
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+        }
+        
+        if (mobileMenuBackdrop) {
+            mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+        }
+        
+        // Close mobile menu when clicking on navigation links
+        const mobileNavLinks = document.querySelectorAll('#mobileMenu nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        // Close mobile menu on window resize if screen becomes larger
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                closeMobileMenu();
+            }
+        });
 
         // Dark Mode Functionality
         const darkModeToggle = document.getElementById('darkModeToggle');

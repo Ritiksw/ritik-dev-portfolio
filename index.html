@@ -121,6 +121,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        
         .floating-element {
             transition: all 0.3s ease;
             cursor: pointer;
@@ -145,15 +146,79 @@
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             z-index: 5;
         }
+        
+        /* Mobile Menu Animations */
+        #mobileMenu {
+            backdrop-filter: blur(8px);
+        }
+        
+        #mobileMenu .absolute.right-0 {
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: rgb(255, 255, 255);
+        }
+        
+        .dark #mobileMenu .absolute.right-0 {
+            background: rgb(17, 24, 39);
+        }
+        
+        #mobileMenu.translate-x-0 .absolute.right-0 {
+            transform: translateX(0);
+        }
+        
+        /* Mobile menu link hover effects */
+        #mobileMenu nav a {
+            transition: all 0.3s ease;
+        }
+        
+        #mobileMenu nav a:hover {
+            transform: translateX(8px);
+        }
+        
+        /* Enhanced Icon Animations */
+        #hamburgerIcon,
+        #closeIcon {
+            transform-origin: center;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        #mobileMenuToggle:hover #hamburgerIcon {
+            transform: rotate(180deg) scale(1.1);
+        }
+        
+        #mobileMenuToggle:hover #closeIcon {
+            transform: rotate(-180deg) scale(1.1);
+        }
+        
+        /* Icon transformation when menu opens */
+        #hamburgerIcon.hidden {
+            transform: rotate(90deg) scale(0);
+            opacity: 0;
+        }
+        
+        #closeIcon.hidden {
+            transform: rotate(-90deg) scale(0);
+            opacity: 0;
+        }
+        
+        #hamburgerIcon:not(.hidden) {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
+        
+        #closeIcon:not(.hidden) {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
     <!-- Premium Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
+    <nav class="fixed top-0 w-full bg-white dark:bg-gray-900 z-50 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-6">
                 <div class="text-2xl font-serif font-bold text-gray-900 dark:text-white animate-slide-in-left">
-                    <span class="text-gray-400 dark:text-gray-500">R</span>itik <span class="text-gray-400 dark:text-gray-500">W</span>andale
+                    <span class="text-gray-900 dark:text-white">R</span><span class="text-gray-400 dark:text-gray-500">itik </span><span class="text-gray-900 dark:text-white">W</span><span class="text-gray-400 dark:text-gray-500">andale</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-12">
                     <a href="index.html" class="text-gray-900 dark:text-white hover:text-primary transition-all duration-300 font-medium tracking-wide text-sm uppercase border-b-2 border-primary">Home</a>
@@ -163,29 +228,95 @@
                     <a href="contact.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 font-medium tracking-wide text-sm uppercase">Contact</a>
                     
                     <!-- Dark Mode Toggle -->
-                    <button id="darkModeToggle" class="ml-6 p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
+                    <button id="darkModeToggle" class="ml-6 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
                         <i class="fas fa-moon dark:hidden text-lg"></i>
                         <i class="fas fa-sun hidden dark:block text-lg"></i>
                     </button>
                 </div>
                 <div class="flex items-center space-x-4 md:hidden">
                     <!-- Mobile Dark Mode Toggle -->
-                    <button id="darkModeToggleMobile" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
+                    <button id="darkModeToggleMobile" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:block"></i>
                     </button>
-                    <button class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">
-                    <i class="fas fa-bars text-xl"></i>
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobileMenuToggle" class="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors p-2">
+                        <i id="hamburgerIcon" class="fas fa-bars text-xl transition-all duration-300"></i>
+                        <i id="closeIcon" class="fas fa-times text-xl transition-all duration-300 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 z-40 md:hidden transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="absolute inset-0 bg-gray-900/50 dark:bg-black/60 backdrop-blur-md" id="mobileMenuBackdrop"></div>
+            <div class="absolute right-0 top-0 h-full w-80 max-w-sm bg-white dark:bg-gray-900 border-l-4 border-blue-500 dark:border-blue-400 shadow-2xl opacity-100 z-50">
+                <div class="flex flex-col h-full">
+                    <!-- Mobile Menu Header -->
+                    <div class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
+                        <div class="text-xl font-serif font-bold text-gray-900 dark:text-white">
+                            <span class="text-gray-400 dark:text-gray-500">R</span>itik <span class="text-gray-400 dark:text-gray-500">W</span>andale
+                        </div>
+                        <button id="mobileMenuClose" class="p-2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200">
+                            <i class="fas fa-times text-xl"></i>
                 </button>
+                    </div>
+                    
+                    <!-- Mobile Menu Navigation -->
+                    <nav class="flex-1 px-6 py-8">
+                        <div class="space-y-6">
+                            <a href="index.html" class="flex items-center text-gray-900 dark:text-white hover:text-primary transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-primary pl-4 bg-primary/5">
+                                <i class="fas fa-home w-6 mr-4"></i>
+                                Home
+                            </a>
+                            <a href="about.html" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:border-primary hover:pl-4 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-transparent pl-0">
+                                <i class="fas fa-user w-6 mr-4"></i>
+                                About
+                            </a>
+                            <a href="projects.html" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:border-primary hover:pl-4 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-transparent pl-0">
+                                <i class="fas fa-briefcase w-6 mr-4"></i>
+                                Work
+                            </a>
+                            <a href="skills.html" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:border-primary hover:pl-4 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-transparent pl-0">
+                                <i class="fas fa-code w-6 mr-4"></i>
+                                Skills
+                            </a>
+                            <a href="contact.html" class="flex items-center text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:border-primary hover:pl-4 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 font-medium tracking-wide text-base uppercase border-l-4 border-transparent pl-0">
+                                <i class="fas fa-envelope w-6 mr-4"></i>
+                                Contact
+                            </a>
+                        </div>
+                    </nav>
+                    
+                    <!-- Mobile Menu Footer -->
+                    <div class="p-6 border-t border-gray-100 dark:border-gray-700">
+                        <div class="flex justify-center space-x-6">
+                            <a href="https://www.linkedin.com/in/ritik-wandale-a1aa6a203/" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-linkedin text-2xl"></i>
+                            </a>
+                            <a href="https://github.com/Ritiksw" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-github text-2xl"></i>
+                            </a>
+                            <a href="https://twitter.com/RitikWandale" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
+    <section id="home" class="min-h-screen pt-28 md:pt-32 flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 overflow-hidden">
+            <!-- Dark mode vignette overlay (subtle, premium) -->
+            <div class="absolute inset-0 pointer-events-none hidden dark:block">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.05)_0,_transparent_60%)]"></div>
+                <div class="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(0,0,0,0.18),_transparent_30%,_transparent_70%,_rgba(0,0,0,0.18))]"></div>
+            </div>
             <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full animate-pulse-slow"></div>
             <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full animate-pulse-slow"></div>
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full animate-pulse-slow"></div>
@@ -194,21 +325,21 @@
         <!-- Essential Floating Elements -->
         <div class="absolute inset-0 pointer-events-none">
             <!-- Code Brackets - Essential coding symbol -->
-            <div class="floating-element absolute top-32 left-16 text-gray-400/40 animate-float" style="animation-delay: 0s;">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+            <div class="floating-element absolute top-32 left-16 text-blue-400/15 animate-float" style="animation-delay: 0s;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8.5,18.31L5.69,15.5L8.5,12.69L7.81,12L4.81,15L7.81,18L8.5,18.31M15.5,12.69L18.31,15.5L15.5,18.31L16.19,19L19.19,16L16.19,13L15.5,12.69Z"/>
                 </svg>
             </div>
             
             <!-- React Symbol - Your main technology -->
-            <div class="floating-element absolute top-40 right-24 text-cyan-500/35 animate-drift" style="animation-delay: 2s;">
-                <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor">
+            <div class="floating-element absolute top-40 right-24 text-cyan-400/15 animate-drift" style="animation-delay: 2s;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12,10.11C13.03,10.11 13.87,10.95 13.87,12C13.87,13 13.03,13.85 12,13.85C10.97,13.85 10.13,13 10.13,12C10.13,10.95 10.97,10.11 12,10.11M7.37,20C8,20.38 9.38,19.8 10.97,18.30C10.45,17.71 9.94,17.07 9.46,16.4C8.64,16.32 7.83,16.2 7.06,16.04C6.55,18.18 6.74,19.65 7.37,20M8.08,14.26L7.79,13.75C7.68,14.04 7.57,14.33 7.5,14.61C7.77,14.67 8.07,14.72 8.38,14.77C8.28,14.6 8.18,14.43 8.08,14.26M14.62,13.5L15.43,12L14.62,10.5C14.32,9.97 14,9.5 13.71,9.03C13.17,9 12.6,9 12,9C11.4,9 10.83,9 10.29,9.03C10,9.5 9.68,9.97 9.38,10.5L8.57,12L9.38,13.5C9.68,14.03 10,14.5 10.29,14.97C10.83,15 11.4,15 12,15C12.6,15 13.17,15 13.71,14.97C14,14.5 14.32,14.03 14.62,13.5M12,6.78C11.81,7 11.61,7.23 11.41,7.5C11.61,7.5 11.8,7.5 12,7.5C12.2,7.5 12.39,7.5 12.59,7.5C12.39,7.23 12.19,7 12,6.78M12,17.22C12.19,17 12.39,16.77 12.59,16.5C12.39,16.5 12.2,16.5 12,16.5C11.8,16.5 11.61,16.5 11.41,16.5C11.61,16.77 11.81,17 12,17.22M16.62,4C16,3.62 14.62,4.2 13.03,5.7C13.55,6.29 14.06,6.93 14.54,7.6C15.36,7.68 16.17,7.8 16.94,7.96C17.45,5.82 17.26,4.35 16.62,4M15.92,9.74L16.21,10.25C16.32,9.96 16.43,9.67 16.5,9.39C16.23,9.33 15.93,9.28 15.62,9.23C15.72,9.4 15.82,9.57 15.92,9.74M17.37,2.69C18.84,3.53 19,5.74 18.38,8.32C20.92,9.07 22.75,10.31 22.75,12C22.75,13.69 20.92,14.93 18.38,15.68C19,18.26 18.84,20.47 17.37,21.31C15.91,22.15 13.92,21.19 12,19.36C10.08,21.19 8.09,22.15 6.62,21.31C5.16,20.47 5,18.26 5.62,15.68C3.08,14.93 1.25,13.69 1.25,12C1.25,10.31 3.08,9.07 5.62,8.32C5,5.74 5.16,3.53 6.62,2.69C8.09,1.85 10.08,2.81 12,4.64C13.92,2.81 15.91,1.85 17.37,2.69M17.08,12C17.42,12.75 17.72,13.5 17.97,14.26C20.07,13.63 21.25,12.73 21.25,12C21.25,11.27 20.07,10.37 17.97,9.74C17.72,10.5 17.42,11.25 17.08,12M6.92,12C6.58,11.25 6.28,10.5 6.03,9.74C3.93,10.37 2.75,11.27 2.75,12C2.75,12.73 3.93,13.63 6.03,14.26C6.28,13.5 6.58,12.75 6.92,12M15.92,14.26C15.82,14.43 15.72,14.6 15.62,14.77C15.93,14.72 16.23,14.67 16.5,14.61C16.43,14.33 16.32,14.04 16.21,13.75L15.92,14.26M8.08,9.74C8.18,9.57 8.28,9.4 8.38,9.23C8.07,9.28 7.77,9.33 7.5,9.39C7.57,9.67 7.68,9.96 7.79,10.25L8.08,9.74Z"/>
                 </svg>
             </div>
             
             <!-- Laptop with Code -->
-            <div class="floating-element absolute top-64 right-96 text-gray-600/30 animate-drift" style="animation-delay: 4s;">
+            <div class="floating-element absolute top-64 right-96 text-indigo-400/15 animate-drift" style="animation-delay: 4s;">
                 <svg width="52" height="52" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z"/>
                     <!-- Code lines on screen -->
@@ -217,7 +348,7 @@
             </div>
             
             <!-- Developer Figure -->
-            <div class="floating-element absolute top-88 left-48 text-blue-500/70 animate-float-slow" style="animation-delay: 3.2s; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));">
+            <div class="floating-element absolute top-88 left-48 text-blue-400/15 animate-float-slow" style="animation-delay: 3.2s;">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
                     <!-- Person head -->
                     <circle cx="12" cy="6" r="2" fill="currentColor"/>
@@ -231,13 +362,13 @@
             </div>
             
             <!-- Code Editor Window -->
-            <div class="floating-element absolute bottom-72 right-48 text-emerald-500/70 animate-drift" style="animation-delay: 2.1s; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));">
+            <div class="floating-element absolute bottom-72 right-48 text-emerald-400/15 animate-drift" style="animation-delay: 2.1s;">
                 <svg width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
                     <!-- Window frame -->
                     <path d="M3,3V21H21V3H3M5,5H19V7H5V5M5,9H19V19H5V9Z"/>
                     <!-- Window controls -->
                     <circle cx="6" cy="6" r="0.5" fill="currentColor" opacity="0.8"/>
-                    <circle cx="7.5" cy="6" r="0.5" fill="currentColor" opacity="0.8"/>
+                    <circle cx="7.5" cy="6" r="0.5" fill="currentColor" opacity="0.8"\/>
                     <circle cx="9" cy="6" r="0.5" fill="currentColor" opacity="0.8"/>
                     <!-- Code lines -->
                     <path d="M7,11H17M7,12.5H15M7,14H13M7,15.5H16" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
@@ -250,13 +381,13 @@
                 <div class="inline-block mb-8">
                     <span class="bg-white/80 backdrop-blur-sm text-gray-700 px-6 py-3 rounded-full text-sm font-medium uppercase tracking-widest shadow-lg">Software Engineer</span>
                 </div>
-                <h1 class="text-7xl md:text-8xl font-serif font-light text-gray-900 dark:text-white mb-6 animate-slide-up tracking-tight">
-                    Ritik <span class="font-bold gradient-text italic">Wandale</span>
+                <h1 class="text-6xl md:text-7xl font-serif font-light text-gray-900 dark:text-white mb-6 animate-slide-up tracking-tight">
+                    Ritik <span class="font-bold gradient-text">Wandale</span>
                 </h1>
                 <p class="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-8 animate-slide-up font-light tracking-wide" style="animation-delay: 0.2s;">
                     Crafting Digital Excellence
                 </p>
-                <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12 animate-slide-up leading-relaxed" style="animation-delay: 0.4s;">
+                <p class="text-lg text-gray-500 dark:text-gray-300 max-w-2xl mx-auto mb-12 animate-slide-up leading-relaxed" style="animation-delay: 0.4s;">
                     Passionate about creating innovative solutions through clean code and thoughtful design. Currently shaping the future of software at Yardi Software.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up" style="animation-delay: 0.6s;">
@@ -264,11 +395,15 @@
                         <span class="relative z-10">Explore Work</span>
                         <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </a>
-                    <a href="contact.html" class="group border-2 border-gray-900 text-gray-900 px-12 py-4 rounded-none hover:bg-gray-900 hover:text-white transition-all duration-500 font-medium tracking-wide uppercase text-sm">
+                    <a href="contact.html" class="group border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white px-12 py-4 rounded-none hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-500 font-medium tracking-wide uppercase text-sm">
                         Let's Connect
                     </a>
                 </div>
             </div>
+        </div>
+        <!-- Professional avatar: right-aligned, desktop-only -->
+        <div class="hidden md:block absolute right-10 top-1/2 -translate-y-1/2 z-10">
+            <img src="assets/Profile.jpg" alt="Ritik Wandale" loading="lazy" class="w-36 h-36 lg:w-48 lg:h-48 xl:w-56 xl:h-56 2xl:w-64 2xl:h-64 rounded-full ring-4 ring-white/80 dark:ring-white/20 shadow-2xl object-cover">
         </div>
         
         <!-- Scroll Indicator -->
@@ -285,25 +420,25 @@
                     <div class="w-1 h-16 bg-gradient-to-b from-primary to-secondary mx-auto mb-6"></div>
                     <div class="text-5xl font-serif font-bold text-gray-900 dark:text-white mb-2">7.7</div>
                     <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1 uppercase tracking-wide">CGPA</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Computer Engineering</p>
+                    <p class="text-gray-500 dark:text-gray-300 text-sm">Computer Engineering</p>
             </div>
                 <div class="text-center group animate-on-scroll" style="animation-delay: 0.1s;">
                     <div class="w-1 h-16 bg-gradient-to-b from-green-500 to-emerald-600 mx-auto mb-6"></div>
                     <div class="text-5xl font-serif font-bold text-gray-900 dark:text-white mb-2">5+</div>
                     <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1 uppercase tracking-wide">Projects</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Full-Stack Applications</p>
+                    <p class="text-gray-500 dark:text-gray-300 text-sm">Full-Stack Applications</p>
                 </div>
                 <div class="text-center group animate-on-scroll" style="animation-delay: 0.2s;">
                     <div class="w-1 h-16 bg-gradient-to-b from-purple-500 to-pink-600 mx-auto mb-6"></div>
                     <div class="text-5xl font-serif font-bold text-gray-900 dark:text-white mb-2">2+</div>
                     <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1 uppercase tracking-wide">Years</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Professional Experience</p>
+                    <p class="text-gray-500 dark:text-gray-300 text-sm">Professional Experience</p>
                 </div>
                 <div class="text-center group animate-on-scroll" style="animation-delay: 0.3s;">
                     <div class="w-1 h-16 bg-gradient-to-b from-yellow-500 to-orange-600 mx-auto mb-6"></div>
                     <div class="text-5xl font-serif font-bold text-gray-900 dark:text-white mb-2">5★</div>
                     <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1 uppercase tracking-wide">Rating</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">HackerRank C++</p>
+                    <p class="text-gray-500 dark:text-gray-300 text-sm">HackerRank C++</p>
                 </div>
             </div>
         </div>
@@ -317,7 +452,7 @@
                 <span class="text-gray-400 uppercase tracking-widest text-sm font-medium">Available for opportunities</span>
             </div>
             <h2 class="text-5xl md:text-6xl font-serif font-light text-white mb-8 animate-on-scroll leading-tight">
-                Let's Create Something <br><span class="font-bold gradient-text italic">Extraordinary</span>
+                Let's Create Something <br><span class="font-bold gradient-text">Extraordinary</span>
             </h2>
             <p class="text-xl text-gray-300 mb-12 animate-on-scroll max-w-2xl mx-auto leading-relaxed">
                 Ready to transform your vision into reality? Let's discuss how we can build exceptional digital experiences together.
@@ -339,7 +474,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-2xl font-bold gradient-text mb-4">Ritik Wandale</h3>
-                    <p class="text-gray-400">Software Engineer Trainee passionate about creating innovative solutions.</p>
+                    <p class="text-gray-400">Software Engineer passionate about creating innovative solutions.</p>
                 </div>
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
@@ -404,14 +539,61 @@
             });
         });
 
-        // Mobile menu toggle (hamburger button only)
-        const hamburgerButton = document.querySelector("button:not([id])"); // Button without ID
+        // Mobile Menu Functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
         
-        if (hamburgerButton) {
-            hamburgerButton.addEventListener("click", () => {
-            console.log("Mobile menu clicked");
+        function openMobileMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            hamburgerIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenu.classList.add('translate-x-full');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+        
+        // Event listeners for mobile menu
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('translate-x-full')) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
             });
         }
+        
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+        }
+        
+        if (mobileMenuBackdrop) {
+            mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+        }
+        
+        // Close mobile menu when clicking on navigation links
+        const mobileNavLinks = document.querySelectorAll('#mobileMenu nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        // Close mobile menu on window resize if screen becomes larger
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // md breakpoint
+                closeMobileMenu();
+            }
+        });
 
         // Mouse cursor interaction with floating elements
         const floatingElements = document.querySelectorAll('.floating-element');
