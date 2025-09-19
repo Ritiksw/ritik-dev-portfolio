@@ -407,7 +407,7 @@
         </div>
         
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce" aria-label="Scroll down" title="Scroll down">
             <i class="fas fa-chevron-down text-primary text-2xl"></i>
         </div>
     </section>
@@ -523,6 +523,19 @@
 
         document.querySelectorAll(".animate-on-scroll").forEach(el => {
             observer.observe(el);
+        });
+
+        // Scroll-down arrow: smooth scroll to the next section after the current section
+        document.querySelectorAll('.scroll-indicator').forEach(function(el){
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', function(){
+                const containerSection = el.closest('section');
+                let nextSection = containerSection ? containerSection.nextElementSibling : el.nextElementSibling;
+                while (nextSection && nextSection.tagName && nextSection.tagName.toLowerCase() !== 'section') {
+                    nextSection = nextSection.nextElementSibling;
+                }
+                (nextSection || document.body).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
         });
 
         // Smooth scrolling for internal links
